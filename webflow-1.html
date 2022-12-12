@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+  <meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/html2pdf.js/0.9.1/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style> 
+      /* pacifico font */
+      @import url(https://fonts.googleapis.com/css?family=Pacifico);
+      h3{font-family: 'Pacifico', serif;}
+      .main-section h3{font-size:30px;margin-bottom:30px;}.main-section p{font-size:20px;margin-bottom:15px;}p.s-t-s-p-1 {margin-top: 20px;}img#i-s-m-1 {margin: 20px 0px;}
+    </style>
+    <script>
+      $(document).ready(function(){
+        image1();
+        $('.html2PdfConverter').click(function() {
+          //console.log("Here");return false;
+
+          // get the contents of the link that was clicked
+          var m_s_h_1 = $(".m-s-h-1").text();
+          var m_s_p_1 = $(".m-s-p-1").text();
+          var m_s_p_2 = $(".m-s-p-2").text();
+          var m_s_p_3 = $(".m-s-p-3").text();
+          var m_s_p_4 = $(".m-s-p-4").text();
+
+          var i_s_h_1 = $(".i-s-h-1").text();
+          var i_s_p_1 = $(".i-s-p-1").text();
+          var i_s_p_2 = $(".i-s-p-2").text();
+          var i_s_p_3 = $(".i-s-p-3").text();
+          var i_s_p_4 = $(".i-s-p-4").text();
+          // var i_s_m_1 = $(".i-s-m-1").text();
+          var i_s_m_1 = $("img#my-image-1").attr("src");
+          //console.log(i_s_m_1);
+          //return false;
+          
+
+          var s_f_s_h_1 = $(".s-f-s-h-1").text();
+          var s_f_s_p_1 = $(".s-f-s-p-1").text();
+          var s_f_s_p_2 = $(".s-f-s-p-2").text();
+          var s_f_s_p_3 = $(".s-f-s-p-3").text();
+          var s_s_s_c_l_p_1 = $(".s-s-s-c-l-p-1").text();
+          var i_s_m_2 = $("img#my-image-2").attr("src");
+
+          var s_t_s_p_1 = $(".s-t-s-p-1").text();
+          var s_t_s_p_2 = $(".s-t-s-p-2").text();
+          var s_t_s_p_3 = $(".s-t-s-p-3").text();
+
+          $(".m-s-h-1").html(m_s_h_1);
+          $(".m-s-p-1").html(m_s_p_1);
+          $(".m-s-p-2").html(m_s_p_2);
+          $(".m-s-p-3").html(m_s_p_3);
+          $(".m-s-p-4").html(m_s_p_4);
+
+          $(".i-s-h-1").html(i_s_h_1);
+          $(".i-s-p-1").html(i_s_p_1);
+          $(".i-s-p-2").html(i_s_p_2);
+          $(".i-s-p-3").html(i_s_p_3);
+          $("img#i-s-m-1").attr("src", i_s_m_1);
+          $(".i-s-p-4").html(i_s_p_4);
+          
+          // $(".i-s-m-1").html(i_s_m_1);
+          //console.log($("img#my-image-1").attr("src", "i_s_m_1"));
+          //return false;
+
+          $(".s-f-s-h-1").html(s_f_s_h_1);
+          $(".s-f-s-p-1").html(s_f_s_p_1);
+          $(".s-f-s-p-2").html(s_f_s_p_2);
+          $(".s-f-s-p-3").html(s_f_s_p_3);
+          $(".s-s-s-c-l-p-1").html(s_s_s_c_l_p_1);
+          $("img#i-s-m-2").attr("src", i_s_m_2);
+          $(".s-t-s-p-1").html(s_t_s_p_1);
+          $(".s-t-s-p-2").html(s_t_s_p_2);
+          $(".s-t-s-p-3").html(s_t_s_p_3);
+
+          //$(".wf-section").hide();
+          //window.location.href = "https://info.tringapps.com/article-thank-you";
+          createPDF();
+        });
+      });
+
+      function image1(){
+        const image = document.getElementById('my-image-1');
+          // Get the remote image as a Blob with the fetch API
+          fetch(image.src)
+              .then((res) => res.blob())
+              .then((blob) => {
+                  // Read the Blob as DataURL using the FileReader API
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                      //console.log(reader.result);
+                      // Logs data:image/jpeg;base64,wL2dvYWwgbW9yZ...
+
+                      // Convert to Base64 string
+                      //const base64 = getBase64StringFromDataURL(reader.result);
+                      //console.log(reader.result);
+                      document.getElementById("my-image-1").src = reader.result;
+                      // Logs wL2dvYWwgbW9yZ...
+                  }
+                  reader.readAsDataURL(blob);
+              });
+
+        const image2 = document.getElementById('my-image-2');
+          fetch(image2.src)
+              .then((res) => res.blob())
+              .then((blob) => {
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                      document.getElementById("my-image-2").src = reader.result;
+                  }
+                  reader.readAsDataURL(blob);
+              });
+      }
+      
+      function createPDF() {
+        var element = document.getElementById('element-to-print');
+        html2pdf(element, {
+            margin:0.5,
+            padding:0,
+            filename: 'myfile.pdf',
+            image: { type: 'jpeg', quality: 0.5},
+            html2canvas: { scale: 2,  logging: true },
+            jsPDF: { unit: 'in', format: 'A2', orientation: 'P' },
+            class: createPDF
+        });
+      }
+        
+    </script>
+</head>
+
+<body>
+
+    <div id="element-to-print">
+
+      <section class="main-section">
+        <div class="container">
+
+          <div class="row">
+              <div class="col-md-12">
+                <h3 class="m-s-h-1"></h3>
+                <p class="m-s-p-1"></p>
+                <p class="m-s-p-2"></p>
+                <p class="m-s-p-3"></p>
+                <p class="m-s-p-4"></p>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                <h3 class="i-s-h-1"></h3>
+                <p class="i-s-p-1"></p>
+                <p class="i-s-p-2"></p>
+                <p class="i-s-p-3"></p>
+                <img src="" id="i-s-m-1">
+                <p class="i-s-p-4"></p>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="s-f-s-h-1"></h3>
+              <p class="s-f-s-p-1"></p>
+              <p class="s-f-s-p-2"></p>
+              <p class="s-f-s-p-3"></p>
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-6">
+                <p class="s-s-s-c-l-p-1"></p>
+              </div>
+              <div class="col-md-6">
+                <img src="" id="i-s-m-2">
+                <!-- <p class="s-s-s-c-l-p-2"></p> -->
+              </div>
+            </div>
+            <div class="col-md-12">
+              <p class="s-t-s-p-1"></p>
+              <p class="s-t-s-p-2"></p>
+              <p class="s-t-s-p-3"></p>
+            </div>
+          </div>
+
+       </div>
+      </section>
+            
+    </div>
+
+    <button class="btn btn-primary html2PdfConverter text-center">html to PDF </button>
+   
+</body>
+</html>
